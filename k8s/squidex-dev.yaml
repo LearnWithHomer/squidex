@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: squidex-dev
+  name: squidex
   annotations:
     iam.amazonaws.com/permitted: ".*"
 ---
 apiVersion: 'kubernetes-client.io/v1'
 kind: ExternalSecret
 metadata:
-  name: squidex
-  namespace: squidex-dev
+  name: squidex-dev-v2
+  namespace: squidex
 spec:
   backendType: secretsManager
   data:
@@ -38,14 +38,14 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: squidex-v2
-  namespace: squidex-dev
+  name: squidex-dev-v2
+  namespace: squidex
 spec:
   replicas: ${SQUIDEX_DEV_REPLICAS}
   revisionHistoryLimit: 2
   selector:
     matchLabels:
-      app: squidex-v2
+      app: squidex-dev-v2
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -54,10 +54,10 @@ spec:
   template:
     metadata:
       labels:
-        app: squidex-v2
+        app: squidex-dev-v2
     spec:
       containers:
-        - name: squidex
+        - name: squidex-dev-v2
           image: 597764168253.dkr.ecr.us-east-1.amazonaws.com/homer-squidex:${SQUIDEX_DEV_VERSION_TAG}
           imagePullPolicy: Always
           resources:
@@ -89,7 +89,7 @@ spec:
             - name: IDENTITY__ADMINPASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: squidex
+                  name: squidex-dev-v2
                   key: squidex_admin_password
             - name: URLS__BASEURL
               value: "https://${SQUIDEX_DEV_DOMAIN_NAME}"
@@ -106,14 +106,14 @@ spec:
             - name: EVENTSTORE__MONGODB__CONFIGURATION
               valueFrom:
                 secretKeyRef:
-                  name: squidex
+                  name: squidex-dev-v2
                   key: mongo_connection_string
             - name: EVENTSTORE__MONGODB__DATABASE
               value: "Squidex"
             - name: STORE__MONGODB__CONFIGURATION
               valueFrom:
                 secretKeyRef:
-                  name: squidex
+                  name: squidex-dev-v2
                   key: mongo_connection_string
             - name: STORE__MONGODB__DATABASE
               value: "Squidex"
@@ -128,24 +128,24 @@ spec:
             - name: ASSETSTORE__AMAZONS3__ACCESSKEY
               valueFrom:
                 secretKeyRef:
-                  name: squidex
+                  name: squidex-dev-v2
                   key: iam_access_key
             - name: ASSETSTORE__AMAZONS3__SECRETKEY
               valueFrom:
                 secretKeyRef:
-                  name: squidex
+                  name: squidex-dev-v2
                   key: iam_secret_key
             - name: IDENTITY__GOOGLECLIENT
               value: "${SQUIDEX_DEV_GOOGLE_CLIENT}"
               valueFrom:
                 secretKeyRef:
-                  name: squidex
+                  name: squidex-dev-v2
                   key: google_auth_client_id
             - name: IDENTITY__GOOGLESECRET
               value: "${SQUIDEX_DEV_GOOGLE_SECRET}"
               valueFrom:
                 secretKeyRef:
-                  name: squidex
+                  name: squidex-dev-v2
                   key: google_auth_secret
             # Specifically Blanking out to deactive these options
             - name: IDENTITY__GITHUBCLIENT
@@ -174,7 +174,7 @@ spec:
             - name: EMAIL__SMTP__PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: squidex
+                  name: squidex-dev-v2
                   key: email_smtp_password
             - name: EMAIL__SMTP__ENABLESSL
               value: "true"
@@ -185,24 +185,24 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: squidex
-  namespace: squidex-dev
+  name: squidex-dev-v2
+  namespace: squidex
   labels:
-    name: squidex
+    name: squidex-dev-v2
 spec:
   ports:
     - port: 80
       targetPort: 80
   selector:
-    app: squidex-v2
+    app: squidex-dev-v2
   type: NodePort
 ---
 ---
 kind: Ingress
 apiVersion: networking.k8s.io/v1beta1
 metadata:
-  namespace: squidex-dev
-  name: squidex
+  namespace: squidex
+  name: squidex-dev-v2
   annotations:
     # use the shared ingress-nginx
     kubernetes.io/ingress.class: "nginx"
@@ -222,5 +222,5 @@ spec:
         paths:
         - path: /
           backend:
-            serviceName: squidex
+            serviceName: squidex-dev-v2
             servicePort: 80
