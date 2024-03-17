@@ -53,7 +53,7 @@ spec:
             - name: IDENTITY__ADMINEMAIL
               valueFrom:
                 configMapKeyRef:
-                  name: squidex-{{ .Values.version }}
+                  name: squidex
                   key: ADMIN_EMAIL
             - name: IDENTITY__ADMINPASSWORD
               valueFrom:
@@ -63,7 +63,7 @@ spec:
             - name: URLS__BASEURL
               valueFrom:
                 configMapKeyRef:
-                  name: squidex-{{ .Values.version }}
+                  name: squidex
                   key: DOMAIN
             - name: URLS__ENFORCEHTTPS
               value: "false"
@@ -100,7 +100,7 @@ spec:
             - name: ASSETSTORE__AMAZONS3__BUCKET
               valueFrom:
                 configMapKeyRef:
-                  name: squidex-{{ .Values.version }}
+                  name: squidex
                   key: S3_BUCKET
             - name: ASSETSTORE__AMAZONS3__REGIONNAME
               value: "us-east-1"
@@ -117,7 +117,7 @@ spec:
             - name: CONTENTS__USETRANSACTIONS
               valueFrom:
                 configMapKeyRef:
-                  name: squidex-{{ .Values.version }}
+                  name: squidex
                   key: CONTENTS__USETRANSACTIONS
             - name: IDENTITY__GOOGLECLIENT
               valueFrom:
