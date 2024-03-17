@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: squidex-{{ .Values.version }}
+  name: squidex
 data:
   MONGODB__CONFIGURATION: mongodb+srv://{{ .Values.mongoconnectionstring}}@{{ .Values.mongourl }}/?retryWrites=true&w=majority
   DOMAIN: https://{{ .Values.domain }}
