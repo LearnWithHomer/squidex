@@ -2,3 +2,4 @@ adminEmail: squidex-staging-45@homerlearning.com
 S3Bucket: homer-squidex-staging
 useTransactions: false
 secretName: "staging-v2-squidex"
+loggingLevel: warning
