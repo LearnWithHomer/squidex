@@ -77,16 +77,16 @@ spec:
               value: "true"
             - name: EVENTSTORE__MONGODB__CONFIGURATION
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: squidex
-                  key: MONGODB__CONFIGURATION
+                  key: mongo_connection_string
             - name: EVENTSTORE__MONGODB__DATABASE
               value: "Squidex"
             - name: STORE__MONGODB__CONFIGURATION
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: squidex
-                  key: MONGODB__CONFIGURATION
+                  key: mongo_connection_string
             - name: STORE__MONGODB__DATABASE
               value: "Squidex"
             - name: STORE__MONGODB__CONTENTDATABASE
