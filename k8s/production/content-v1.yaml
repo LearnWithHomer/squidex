@@ -1,5 +1,5 @@
 adminEmail: squidex-production@homerlearning.com
 S3Bucket: homer-squidex-production
 secretName: production-v1-squidex
-mongoconnectionstring: squidex-production:dLlLdExvl3Y6y6Zh
-mongourl: homer-squidex-productio.ozxp0.mongodb.net
+mongoconnectionstring: unused
+mongourl: unused
