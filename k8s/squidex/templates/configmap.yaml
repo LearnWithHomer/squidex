@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: squidex
 data:
-  MONGODB__CONFIGURATION: mongodb+srv://{{ .Values.mongoconnectionstring}}@{{ .Values.mongourl }}/?retryWrites=true&w=majority
+  MONGODB__CONFIGURATION: {{ .Values.mongoconnectionstring}}
   DOMAIN: https://{{ .Values.domain }}
   ADMIN_EMAIL: {{ .Values.adminEmail }}
   S3_BUCKET: {{ .Values.S3Bucket }}
