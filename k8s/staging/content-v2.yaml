@@ -3,3 +3,5 @@ S3Bucket: homer-squidex-staging
 useTransactions: false
 secretName: "staging-v2-squidex"
 loggingLevel: warning
+ingressEnabled: true
+ingressHost: squidex-staging-v2.learnwithhomer.com
