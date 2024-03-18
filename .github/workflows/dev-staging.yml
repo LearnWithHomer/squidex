@@ -87,6 +87,7 @@ jobs:
     with:
       app_env: ${{ github.event.inputs.choice }}
       slack_channel: homer-staging-status
+      runner: ubuntu-latest
     secrets:
       slack_bot_token: ${{ secrets.CODESPARK_SLACK_BOT_TOKEN }}
 
@@ -97,6 +98,7 @@ jobs:
     with:
       app_env: ${{ github.event.inputs.choice }}
       slack_channel: homer-staging-status
+      runner: ubuntu-latest
     secrets:
       slack_bot_token: ${{ secrets.CODESPARK_SLACK_BOT_TOKEN }}
 

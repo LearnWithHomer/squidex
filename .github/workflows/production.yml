@@ -82,6 +82,7 @@ jobs:
     uses: LearnWithHomer/infrastructure-public/.github/workflows/slack-notify-success.yml@main
     with:
       app_env: ${{ github.event.inputs.choice }}
+      runner: ubuntu-latest
       slack_channel: homer-production-status
     secrets:
       slack_bot_token: ${{ secrets.CODESPARK_SLACK_BOT_TOKEN }}
@@ -92,6 +93,7 @@ jobs:
     uses: LearnWithHomer/infrastructure-public/.github/workflows/slack-notify-failure.yml@main
     with:
       app_env: ${{ github.event.inputs.choice }}
+      runner: ubuntu-latest
       slack_channel: homer-production-status
     secrets:
       slack_bot_token: ${{ secrets.CODESPARK_SLACK_BOT_TOKEN }}
