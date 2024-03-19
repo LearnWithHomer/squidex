@@ -4,4 +4,4 @@ secretName: production-v2-squidex
 useTransactions: false
 loggingLevel: warning
 ingressEnabled: true
-ingressHost: squidex-production-v2.learnwithhomer.com
+domain: squidex-production-v2.learnwithhomer.com

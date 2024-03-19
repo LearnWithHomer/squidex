@@ -47,20 +47,14 @@ spec:
             - name: IDENTITY__ADMINRECREATE
               value: "true"
             - name: IDENTITY__ADMINEMAIL
-              valueFrom:
-                configMapKeyRef:
-                  name: squidex
-                  key: ADMIN_EMAIL
+              value: {{ .Values.adminEmail }}
             - name: IDENTITY__ADMINPASSWORD
               valueFrom:
                 secretKeyRef:
                   name: squidex
                   key: squidex_admin_password
             - name: URLS__BASEURL
-              valueFrom:
-                configMapKeyRef:
-                  name: squidex
-                  key: DOMAIN
+              value: https://{{ .Values.domain }}
             - name: URLS__ENFORCEHTTPS
               value: "false"
             - name: HEALTHZ__GC__THRESHOLD
@@ -94,10 +88,7 @@ spec:
             - name: ASSETSTORE__TYPE
               value: "AmazonS3"
             - name: ASSETSTORE__AMAZONS3__BUCKET
-              valueFrom:
-                configMapKeyRef:
-                  name: squidex
-                  key: S3_BUCKET
+              value: {{ .Values.S3Bucket }}
             - name: ASSETSTORE__AMAZONS3__REGIONNAME
               value: "us-east-1"
             - name: ASSETSTORE__AMAZONS3__ACCESSKEY
@@ -111,10 +102,7 @@ spec:
                   name: squidex
                   key: iam_secret_key
             - name: CONTENTS__USETRANSACTIONS
-              valueFrom:
-                configMapKeyRef:
-                  name: squidex
-                  key: CONTENTS__USETRANSACTIONS
+              value: "{{ .Values.useTransactions }}"
             - name: IDENTITY__GOOGLECLIENT
               valueFrom:
                 secretKeyRef:
@@ -162,8 +150,5 @@ spec:
             - name: EMAIL__SMTP__PORT
               value: "587"
             - name: FULLTEXT__ELASTIC__OPENSEARCH
-              valueFrom:
-                configMapKeyRef:
-                  name: squidex
-                  key: FULLTEXT__ELASTIC__OPENSEARCH
+              value: "true"
       terminationGracePeriodSeconds: 30
