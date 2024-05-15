@@ -5,4 +5,4 @@ useTransactions: false
 loggingLevel: warning
 replicas: 2
 ingressEnabled: true
-domain: squidex-web-cms.learnwithhomer.com
+domain: squidex-web-cms2.learnwithhomer.com
