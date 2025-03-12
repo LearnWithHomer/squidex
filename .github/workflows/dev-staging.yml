@@ -53,7 +53,7 @@ jobs:
       uses: azure/k8s-set-context@v2
       with:
         method: kubeconfig
-        kubeconfig: ${{ secrets.HOMER_KUBECONFIG_STAGING_SQUIDEX }}
+        kubeconfig: ${{ secrets.STAGING_KUBECONFIG }}
 
     # This generates the deployment manifests for specified environment
     - name: Generate manifest for '${{ env.APP_ENVIRONMENT }}'
