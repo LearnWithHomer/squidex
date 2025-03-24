@@ -16,15 +16,21 @@ metadata:
     nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,X-CustomHeader,X-LANG,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,X-Api-Key,X-Device-Id,Access-Control-Allow-Origin"
 spec:
   rules:
-    - host: {{ .Values.domain  }}
-      http:
-        paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: squidex-{{ .Values.version }}
-              port:
-                number: 80
-
+  - host: {{ .Values.domain }}
+    http:
+      paths:
+      - path: /identity-server/
+        pathType: Prefix
+        backend:
+          service:
+            name: squidex-{{ .Values.version }}
+            port:
+              number: 80
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: squidex-{{ .Values.version }}
+            port:
+              number: 80
 {{- end -}}
