@@ -83,24 +83,24 @@ jobs:
             ./manifest.yaml
             ./Dockerfile
 
-  slack-notify-success:
-    if: ${{ success() }}
-    needs: [build_and_deploy]
-    uses: LearnWithHomer/infrastructure-public/.github/workflows/slack-notify-success.yml@main
-    with:
-      app_env: ${{ github.event.inputs.choice }}
-      slack_channel: homer-staging-status
-      runner: ubuntu-latest
-    secrets:
-      slack_bot_token: ${{ secrets.CODESPARK_SLACK_BOT_TOKEN }}
+  # slack-notify-success:
+  #   if: ${{ success() }}
+  #   needs: [build_and_deploy]
+  #   uses: LearnWithHomer/infrastructure-public/.github/workflows/slack-notify-success.yml@main
+  #   with:
+  #     app_env: ${{ github.event.inputs.choice }}
+  #     slack_channel: homer-staging-status
+  #     runner: ubuntu-latest
+  #   secrets:
+  #     slack_bot_token: ${{ secrets.CODESPARK_SLACK_BOT_TOKEN }}
 
-  slack-notify-failure:
-    if: ${{ failure() }}
-    needs: [build_and_deploy]
-    uses: LearnWithHomer/infrastructure-public/.github/workflows/slack-notify-failure.yml@main
-    with:
-      app_env: ${{ github.event.inputs.choice }}
-      slack_channel: homer-staging-status
-      runner: ubuntu-latest
-    secrets:
-      slack_bot_token: ${{ secrets.CODESPARK_SLACK_BOT_TOKEN }}
+  # slack-notify-failure:
+  #   if: ${{ failure() }}
+  #   needs: [build_and_deploy]
+  #   uses: LearnWithHomer/infrastructure-public/.github/workflows/slack-notify-failure.yml@main
+  #   with:
+  #     app_env: ${{ github.event.inputs.choice }}
+  #     slack_channel: homer-staging-status
+  #     runner: ubuntu-latest
+  #   secrets:
+  #     slack_bot_token: ${{ secrets.CODESPARK_SLACK_BOT_TOKEN }}
