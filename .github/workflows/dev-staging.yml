@@ -46,6 +46,9 @@ jobs:
         yq --version
         echo "Installed yq"
 
+    - name: Debug Secret Injection
+      run: echo "${{ secrets.STAGING_KUBECONFIG }}" | wc -l
+
     # Set kubeconfig context for Staging cluster
     - name: Staging :- Set Kubeconfig
       if: ${{ github.event.inputs.choice != 'devopsTest' }}
