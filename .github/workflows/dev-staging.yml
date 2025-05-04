@@ -7,8 +7,7 @@ on:
         type: choice
         description: Select an Environment
         options:
-        - content-v1
-        - content-v2
+        - homer-content-v2
       tag:
         description: The tag of Squidex to pull
 
@@ -53,7 +52,7 @@ jobs:
       uses: azure/k8s-set-context@v2
       with:
         method: kubeconfig
-        kubeconfig: ${{ secrets.HOMER_KUBECONFIG_STAGING_SQUIDEX }}
+        kubeconfig: ${{ secrets.STAGING_KUBECONFIG }}
 
     # This generates the deployment manifests for specified environment
     - name: Generate manifest for '${{ env.APP_ENVIRONMENT }}'
@@ -101,4 +100,3 @@ jobs:
       runner: ubuntu-latest
     secrets:
       slack_bot_token: ${{ secrets.CODESPARK_SLACK_BOT_TOKEN }}
-
