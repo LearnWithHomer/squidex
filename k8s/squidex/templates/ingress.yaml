@@ -26,5 +26,14 @@ spec:
               name: squidex-{{ .Values.version }}
               port:
                 number: 80
-
+    - host: {{ .Values.domain  }}
+      http:
+        paths:
+        - path: /identity-server/
+          pathType: Prefix
+          backend:
+            service:
+              name: squidex-{{ .Values.version }}
+              port:
+                number: 80        
 {{- end -}}
